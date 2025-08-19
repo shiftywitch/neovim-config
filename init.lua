@@ -1,13 +1,21 @@
 -- Theme
-vim.cmd.colorscheme("unokai")
-
 vim.pack.add({
-	{ src = "https://github.com/echasnovski/mini.pick" },
+    { src = "https://github.com/echasnovski/mini.pick" },
+    { src = "https://github.com/neovim/nvim-lspconfig" },
+    { src = "https://github.com/vague2k/vague.nvim" },
 })
 
 require "mini.pick".setup()
 
+vim.cmd.colorscheme("vague")
+
+-- Lsp
+vim.lsp.enable({ "lua_ls" })
+vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format)
+
 -- Basic settings
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.cursorline = true
@@ -26,7 +34,7 @@ vim.opt.autoindent = true
 -- Search settings
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
-vim.opt.hlsearch = true
+vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
 -- Visual settings
@@ -44,6 +52,7 @@ vim.opt.winblend = 0
 vim.opt.conceallevel = 0
 vim.opt.concealcursor = ""
 vim.opt.lazyredraw = true
+vim.opt.winborder = "rounded"
 
 -- File handling
 vim.opt.undofile = true
@@ -69,12 +78,11 @@ vim.opt.encoding = "UTF-8"
 
 -- Center screen when jumping
 vim.keymap.set("n", "n", "nzzzv", { desc = "Next search result (centered)" })
-vim.keymap.set("n", "n", "Nzzzv", { desc = "Previous search result (centered)" })
+vim.keymap.set("n", "N", "Nzzzv", { desc = "Previous search result (centered)" })
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Half page down (centered)" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Half page up (centered)" })
 
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+vim.keymap.set("n", "<leader>f", ":Pick files<CR>")
 
 -- Buffer navibation
 vim.keymap.set("n", "<leader>bn", ":bnext<CR>", { desc = "Next buffer" })
