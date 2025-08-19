@@ -13,6 +13,12 @@ vim.cmd.colorscheme("vague")
 vim.lsp.enable({ "lua_ls" })
 vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format)
 
+vim.diagnostic.config({
+    virtual_lines = {
+        current_line = true,
+    }
+})
+
 -- Basic settings
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
@@ -142,6 +148,8 @@ vim.api.nvim_create_autocmd("BufReadPost", {
         end
     end,
 })
+
+
 
 -- Command-line completion
 vim.opt.wildmenu = true
